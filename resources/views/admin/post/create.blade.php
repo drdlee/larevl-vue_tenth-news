@@ -7,6 +7,7 @@
 
         <div class="panel-body">
             <form action="{{route('post.store')}}" method="POST">
+            {{ csrf_field() }}
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" name="title" class="form-control" placeholder="add the title ..">
@@ -16,7 +17,7 @@
                     <textarea name="content" cols="30" rows="10" placeholer="write some content" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success">Create Post</button>
+                    <button type="submit" class="btn btn-success">Create Post</button>
                     <a href="{{url()->previous()}}" class="btn btn-danger">Cancel</a>
                 </div>
             </form>

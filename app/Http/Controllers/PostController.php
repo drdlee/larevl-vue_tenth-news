@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
+use Auth;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.index');
+        $posts = Post::all();
+        // dd($posts);
+        return view('admin.post.index')
+            ->with('posts', $posts);
     }
 
     /**
@@ -33,9 +39,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $data = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => Auth::user()->id
+        ]);
+        return redirect()->route('post.index');
     }
 
     /**

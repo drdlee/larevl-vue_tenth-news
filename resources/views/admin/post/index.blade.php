@@ -7,6 +7,23 @@
 
         <div class="panel-body">
             <a href="{{route('post.create')}}" class="btn btn-success">Create New Post</a>
+            <table class="table table-hover">
+                <thead>
+                    <th>Title</th>
+                    <th>Options</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    @foreach ($posts as $post)
+                    <tr>
+                        <td>{{$post->title}}</td>
+                        <td><a class="btn btn-xs btn-info">update</a></td>
+                        <td><a class="btn btn-xs btn-danger">trash</a></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
     </div>
         
