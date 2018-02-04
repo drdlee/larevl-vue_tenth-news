@@ -17,7 +17,7 @@
                     @foreach ($posts as $post)
                     <tr>
                         <td>{{$post->title}}</td>
-                        <td><a class="btn btn-xs btn-info">update</a></td>
+                        <td><a href="{{route('post.edit', ['id' => $post->id])}}" class="btn btn-xs btn-info">update</a></td>
                         <td><a class="btn btn-xs btn-danger">trash</a></td>
                     </tr>
                     @endforeach
