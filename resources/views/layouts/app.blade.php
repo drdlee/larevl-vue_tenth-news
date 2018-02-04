@@ -70,8 +70,16 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    @include('admin.sidebar')
+                </div>
+                <div class="col-sm-9">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
