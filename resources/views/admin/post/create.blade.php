@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
+@include('layouts.errors')
         
     <div class="panel panel-default">
         <div class="panel-heading">Create New Post</div>
