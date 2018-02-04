@@ -18,7 +18,13 @@
                     <tr>
                         <td>{{$post->title}}</td>
                         <td><a href="{{route('post.edit', ['id' => $post->id])}}" class="btn btn-xs btn-info">update</a></td>
-                        <td><a class="btn btn-xs btn-danger">trash</a></td>
+                        <td>
+                            <form action="{{route('post.destroy', ['id' => $post->id])}}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" href="{{route('post.destroy', ['id' => $post->id])}}"class="btn btn-xs btn-danger">trash</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
