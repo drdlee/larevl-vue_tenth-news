@@ -20,5 +20,6 @@ Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/post/trash', 'PostController@trash')->name('post.trash');
     Route::resource('post', 'PostController');
 });

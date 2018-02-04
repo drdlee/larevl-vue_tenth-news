@@ -100,4 +100,11 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('post.index');
     }
+
+    public function trash()
+    {   
+        $posts = Post::onlyTrashed()->get();
+        return view('admin.post.trashed')
+            ->with('posts', $posts);
+    }
 }
