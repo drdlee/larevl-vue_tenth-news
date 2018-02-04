@@ -107,4 +107,10 @@ class PostController extends Controller
         return view('admin.post.trashed')
             ->with('posts', $posts);
     }
+
+    public function restore($id)
+    {      
+        Post::withTrashed()->find($id)->restore();
+        return redirect()->route('post.trash');
+    }
 }

@@ -16,10 +16,10 @@
                     <tr>
                         <td>{{$post->title}}</td>
                         <td>
-                            <form action="{{route('post.destroy', ['id' => $post->id])}}" method="POST">
+                            <form action="{{route('post.restore', ['id' => $post->id])}}" method="POST">
                             {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" href="{{route('post.destroy', ['id' => $post->id])}}"class="btn btn-xs btn-danger">restore</button>
+                            <input type="hidden" name="_method" value="PUT">
+                                <button type="submit" class="btn btn-xs btn-danger">restore</button>
                             </form>
                         </td>
                     </tr>
