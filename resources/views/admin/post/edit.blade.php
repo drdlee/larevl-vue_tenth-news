@@ -3,7 +3,7 @@
 @include('layouts.errors')
         
     <div class="panel panel-default">
-        <div class="panel-heading">Edit Post: {{$post->title}}</div>
+        <div class="panel-heading">Edit Post: <strong><u>{{$post->title}}</u></strong></div>
 
         <div class="panel-body">
             <form action="{{route('post.update', ['id' => $post->id])}}" method="POST">

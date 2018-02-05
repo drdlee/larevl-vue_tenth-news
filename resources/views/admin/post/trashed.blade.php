@@ -12,9 +12,19 @@
                     <th>Options</th>
                 </thead>
                 <tbody>
+                    @if($posts->count() < 1)
+                    <tr><td colspan="2" class="text-center">No trashed post.</td></tr>
+                    @endif
                     @foreach ($posts as $post)
                     <tr>
-                        <td>{{$post->title}}</td>
+                        <td>
+                            <h4 class="list-group-item-heading"><strong>{{$post->title}}</strong></h4>
+                            <small class="list-group-item-text">
+                                <span>by. </span> {{$post->user->name}} 
+                                &bull;
+                                <span>at. </span> {{$post->created_at->toFormattedDateString()}}
+                            </small>
+                        </td>
                         <td>
                             <form action="{{route('post.restore', ['id' => $post->id])}}" method="POST">
                             {{ csrf_field() }}
