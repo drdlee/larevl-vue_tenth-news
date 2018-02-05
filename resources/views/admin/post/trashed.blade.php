@@ -10,10 +10,11 @@
                 <thead>
                     <th>Title</th>
                     <th>Options</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     @if($posts->count() < 1)
-                    <tr><td colspan="2" class="text-center">No trashed post.</td></tr>
+                    <tr><td colspan="3" class="text-center">No trashed post.</td></tr>
                     @endif
                     @foreach ($posts as $post)
                     <tr>
@@ -30,6 +31,13 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="PUT">
                                 <button type="submit" class="btn btn-xs btn-danger">restore</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{route('post.kill', ['id' => $post->id])}}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-xs btn-danger">kill</button>
                             </form>
                         </td>
                     </tr>

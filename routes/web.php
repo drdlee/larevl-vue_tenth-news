@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/post/trash', 'PostController@trash')->name('post.trash');
+    Route::delete('/post/trash/{post}', 'PostController@kill')->name('post.kill');
     Route::put('/post/restore/{post}', 'PostController@restore')->name('post.restore');
     Route::resource('post', 'PostController');
 });

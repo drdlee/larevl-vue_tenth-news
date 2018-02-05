@@ -35,7 +35,7 @@
                             <form action="{{route('post.destroy', ['id' => $post->id])}}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" href="{{route('post.destroy', ['id' => $post->id])}}"class="btn btn-xs btn-danger">trash</button>
+                                <button type="submit" Class="btn btn-xs btn-danger">trash</button>
                             </form>
                         </td>
                     </tr>
