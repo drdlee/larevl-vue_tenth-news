@@ -41,11 +41,19 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $image = $request->image;
+        $imageNewName = time().'-'.$image->getClientOriginalName();
+        $image->move('uploads/posts', $imageNewName);
+
         $data = Post::create([
             'title' => $request->title,
             'content' => $request->content,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'image' => 'uploads/posts/'.$imageNewName
         ]);
+
+        
+
         return redirect()->route('post.index');
     }
 
