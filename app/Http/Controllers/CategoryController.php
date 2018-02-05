@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 
@@ -16,8 +17,11 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $trashPost = Post::onlyTrashed()->get();
         return view('admin.category.index')
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with('trashPost', $trashPost)
+        ;
     }
 
     /**
@@ -89,6 +93,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $catPosts = Post::withTrashed()->where('category_id', $category->id)->get();
+        foreach($catPosts as $post)
+        {
+            $post->forceDelete();
+        }
         $category->delete();
         return redirect()->route('category.index');
     }

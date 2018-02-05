@@ -22,10 +22,15 @@
                     @foreach ($categories as $category)
                     <tr>
                         <td>
-                            <p>{{$category->name}}</p>
+                            <h4 class="list-group-item-heading">{{$category->name}}</h4>
+                            <small>
+                                <strong>{{count($category->posts)}} posts</strong>, under this category.
+                                <br>
+                                <strong>{{count($trashPost)}} trashed posts</strong>, under this category.
+                            </small>
                         </td>
                         <td>
-                            <td><a href="{{route('category.edit', ['id' => $category->id])}}" class="btn btn-xs btn-info">update</a></td>
+                            <a href="{{route('category.edit', ['id' => $category->id])}}" class="btn btn-xs btn-info">update</a>
                         </td>
                         <td>
                             <form action="{{route('category.destroy', ['id' => $category->id])}}" method="POST">
