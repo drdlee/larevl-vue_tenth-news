@@ -8,6 +8,16 @@
         <div class="panel-body">
             <a href="{{route('post.create')}}" class="btn btn-success">Create New Post</a>
             <a href="{{route('post.trash')}}" class="btn btn-default">trashed posts</a>
+            <br><br>
+            <form action="{{route('post.index')}}" method="GET" class="form-inline">
+                <label for="category">Category</label>
+                <select name="category_id" class="form-control">
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary">filter</button>
+            </form >
             <br>
 
             <table class="table table-hover">

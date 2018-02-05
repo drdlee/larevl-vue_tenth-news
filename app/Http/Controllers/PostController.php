@@ -19,9 +19,12 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $categories = Category::all();
         // dd($posts);
         return view('admin.post.index')
-            ->with('posts', $posts);
+            ->with('posts', $posts)
+            ->with('categories', $categories)
+        ;
     }
 
     /**
