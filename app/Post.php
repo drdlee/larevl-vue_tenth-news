@@ -16,7 +16,7 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function getImageAttribute($image){
-        return asset($image);
-    }
+    // public function getImageAttribute($image){
+    //     return asset($image);
+    // }
 }

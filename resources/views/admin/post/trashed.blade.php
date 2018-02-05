@@ -8,16 +8,20 @@
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
+                    <th>Image Header</th>
                     <th>Title</th>
                     <th>Options</th>
                     <th></th>
                 </thead>
                 <tbody>
                     @if($posts->count() < 1)
-                    <tr><td colspan="3" class="text-center">No trashed post.</td></tr>
+                    <tr><td colspan="4" class="text-center">No trashed post.</td></tr>
                     @endif
                     @foreach ($posts as $post)
                     <tr>
+                        <td width="70px">
+                            <img src="{{asset($post->image)}}" height="63px" alt="{{$post->title}}">
+                        </td>
                         <td>
                             <h4 class="list-group-item-heading"><strong>{{$post->title}}</strong></h4>
                             <small class="list-group-item-text">

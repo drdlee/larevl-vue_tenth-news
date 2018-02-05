@@ -6,12 +6,21 @@
         <div class="panel-heading">Edit Post: <strong><u>{{$post->title}}</u></strong></div>
 
         <div class="panel-body">
-            <form action="{{route('post.update', ['id' => $post->id])}}" method="POST">
+            <form action="{{route('post.update', ['id' => $post->id])}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" value="{{$post->title}}" name="title" class="form-control" placeholder="add the title ..">
+                </div>
+                <blockquote>
+                    <h6>current image</h6>
+                    <img src="{{asset($post->image)}}" alt="{{$post->title}}" height="63px">
+                    
+                </blockquote>
+                <div class="form-group">
+                    <label for="image">Upload New</label>
+                    <input type="file" name="image" class="form-control" value="{{asset($post->image)}}">
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>

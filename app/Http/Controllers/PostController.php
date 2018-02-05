@@ -41,6 +41,9 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $this->validate($request, [
+            'image' => 'required|image'
+        ]);
         $image = $request->image;
         $imageNewName = time().'-'.$image->getClientOriginalName();
         $image->move('uploads/posts', $imageNewName);
@@ -49,7 +52,7 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::user()->id,
-            'image' => 'uploads/posts/'.$imageNewName
+            'image' => '/uploads/posts/'.$imageNewName
         ]);
 
         
@@ -89,7 +92,17 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        // dd($request);
+        if($request->hasFile('image')){
+            $image = $request->image;
+            $newImage = time().'-'.$image->getClientOriginalName();
+            $image->move('uploads/posts', $newImage);
+
+            $imagePath = public_path().$post->image;
+            unlink($imagePath); //delete image from folder
+            
+            $post->image = '/uploads/posts/'.$newImage;
+        }
+
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
@@ -124,7 +137,11 @@ class PostController extends Controller
 
     public function kill($id)
     {   
-        Post::withTrashed()->where('id', $id)->forceDelete();
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $imagePath = public_path().$post->image;
+        unlink($imagePath); //delete image from folder
+        $post->forceDelete();
+
         return redirect()->route('post.trash');
     }
 }
