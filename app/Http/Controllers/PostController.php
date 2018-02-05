@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Category;
 use Auth;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
@@ -30,7 +31,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $categories = Category::all();
+        return view('admin.post.create')
+            ->with('categories', $categories)
+        ;
     }
 
     /**
@@ -52,7 +56,8 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::user()->id,
-            'image' => '/uploads/posts/'.$imageNewName
+            'image' => '/uploads/posts/'.$imageNewName,
+            'category_id' => $request->category_id
         ]);
 
         

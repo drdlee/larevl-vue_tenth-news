@@ -32,6 +32,8 @@
                                 <span>by. </span> {{$post->user->name}} 
                                 &bull;
                                 <span>at. </span> {{$post->created_at->toFormattedDateString()}}
+                                <br>
+                                <span>cat. {{$post->category->name}}</span>
                             </small>
                         </td>
                         <td><a href="{{route('post.edit', ['id' => $post->id])}}" class="btn btn-xs btn-info">update</a></td>
