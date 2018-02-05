@@ -23,6 +23,18 @@
                     <input type="file" name="image" class="form-control" value="{{asset($post->image)}}">
                 </div>
                 <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category_id" class="form-control">
+                        @foreach($categories as $category)
+                        <option value="{{$category->id}}"
+                            @if($post->category->id == $category->id)
+                                selected
+                            @endif
+                        >{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="content">Content</label>
                     <textarea name="content" cols="30" rows="10" placeholer="write some content" class="form-control">{{$post->content}}</textarea>
                 </div>

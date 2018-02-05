@@ -28,6 +28,8 @@
                                 <span>by. </span> {{$post->user->name}} 
                                 &bull;
                                 <span>at. </span> {{$post->created_at->toFormattedDateString()}}
+                                <br>
+                                <span>cat. {{$post->category->name}}</span>
                             </small>
                         </td>
                         <td>
