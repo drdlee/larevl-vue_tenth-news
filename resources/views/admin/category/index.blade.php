@@ -24,7 +24,10 @@
                         <td>
                             <p>{{$category->name}}</p>
                         </td>
-                        
+                        <td>
+                            <td><a href="{{route('category.edit', ['id' => $category->id])}}" class="btn btn-xs btn-info">update</a></td>
+                        </td>
+                        <td>test</td>
                     </tr>
                     @endforeach
                 </tbody>
