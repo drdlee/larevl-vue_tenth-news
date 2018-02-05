@@ -27,7 +27,13 @@
                         <td>
                             <td><a href="{{route('category.edit', ['id' => $category->id])}}" class="btn btn-xs btn-info">update</a></td>
                         </td>
-                        <td>test</td>
+                        <td>
+                            <form action="{{route('category.destroy', ['id' => $category->id])}}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" Class="btn btn-xs btn-danger">trash</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
